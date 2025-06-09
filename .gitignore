@@ -1,0 +1,13 @@
+# 環境変数ファイル
+.env
+
+# Pythonの仮想環境ディレクトリ
+myenv/
+
+# その他の一般的な除外項目（参考）
+__pycache__/
+*.pyc
+.venv/
+venv/
+*.log
+.DS_Store
