@@ -1,160 +1,160 @@
 # Deep Research Agent 🧠
 
-A sophisticated AI-powered research assistant built with LangChain and LangGraph that autonomously conducts in-depth research on any topic and generates comprehensive reports with citations.
+LangChainとLangGraphを使用して構築された高度なAI駆動の調査アシスタント。任意のトピックについて自律的に詳細な調査を実施し、引用付きの包括的なレポートを生成します。
 
-## Features
+## 機能
 
-- **Autonomous Research Planning**: Automatically determines the breadth and depth of research based on the query
-- **Multi-layered Investigation**: Performs iterative searches with follow-up queries for deeper insights
-- **Interactive User Engagement**: Asks clarifying questions to better understand research intent
-- **Source Attribution**: Generates reports with proper citations and reference links
-- **Real-time Progress Tracking**: Visual feedback during the research process
-- **Web-based Interface**: User-friendly Streamlit application
+- **自律的な調査計画**: クエリに基づいて調査の幅と深さを自動的に決定
+- **多層的な調査**: より深い洞察を得るためのフォローアップクエリによる反復検索
+- **インタラクティブなユーザーエンゲージメント**: 調査の意図をより理解するための明確化質問
+- **出典の帰属**: 適切な引用と参照リンクを含むレポートの生成
+- **リアルタイムの進捗追跡**: 調査プロセス中の視覚的フィードバック
+- **Webベースインターフェース**: ユーザーフレンドリーなStreamlitアプリケーション
 
-## Architecture
+## アーキテクチャ
 
-The agent uses a state-based workflow powered by LangGraph with the following components:
+エージェントは、LangGraphによって駆動される状態ベースのワークフローを使用し、以下のコンポーネントで構成されています：
 
-1. **Research Planning**: Analyzes the initial query to determine research strategy
-2. **User Clarification**: Generates follow-up questions to refine the research scope
-3. **Query Generation**: Creates optimized search queries for comprehensive coverage
-4. **Iterative Search**: Executes searches and generates follow-up queries based on findings
-5. **Report Generation**: Synthesizes all findings into a well-structured report with citations
+1. **調査計画**: 初期クエリを分析して調査戦略を決定
+2. **ユーザー明確化**: 調査範囲を絞り込むためのフォローアップ質問を生成
+3. **クエリ生成**: 包括的なカバレッジのための最適化された検索クエリを作成
+4. **反復検索**: 検索を実行し、結果に基づいてフォローアップクエリを生成
+5. **レポート生成**: すべての結果を引用付きの構造化されたレポートに統合
 
-## Prerequisites
+## 前提条件
 
-- Python 3.8+
-- Google Gemini API key
-- Tavily Search API key
+- Python 3.8以上
+- Google Gemini APIキー
+- Tavily Search APIキー
 
-## Installation
+## インストール
 
-1. Clone the repository:
+1. リポジトリをクローン:
 ```bash
 git clone https://github.com/uchi736/research_agent.git
 cd research_agent
 ```
 
-2. Create a virtual environment:
+2. 仮想環境を作成:
 ```bash
 python -m venv myenv
-source myenv/bin/activate  # On Windows: myenv\Scripts\activate
+source myenv/bin/activate  # Windowsの場合: myenv\Scripts\activate
 ```
 
-3. Install dependencies:
+3. 依存関係をインストール:
 ```bash
 pip install -r requirements.txt
 ```
 
-4. Set up environment variables:
-Create a `.env` file in the project root with:
+4. 環境変数を設定:
+プロジェクトルートに`.env`ファイルを作成し、以下を追加:
 ```env
-GOOGLE_API_KEY=your_google_api_key_here
-TAVILY_API_KEY=your_tavily_api_key_here
+GOOGLE_API_KEY=あなたのGoogle APIキー
+TAVILY_API_KEY=あなたのTavily APIキー
 
-# Optional: For LangSmith tracing
+# オプション: LangSmithトレーシング用
 LANGCHAIN_TRACING_V2=true
-LANGCHAIN_API_KEY=your_langsmith_api_key_here
+LANGCHAIN_API_KEY=あなたのLangSmith APIキー
 LANGCHAIN_PROJECT=Deep Research Agent
 ```
 
-## Usage
+## 使用方法
 
-1. Start the Streamlit application:
+1. Streamlitアプリケーションを起動:
 ```bash
 streamlit run app.py
 ```
 
-2. Open your browser and navigate to `http://localhost:8501`
+2. ブラウザを開いて `http://localhost:8501` にアクセス
 
-3. Enter your research topic or question
+3. 調査トピックまたは質問を入力
 
-4. Answer the follow-up questions to refine your research scope
+4. 調査範囲を絞り込むためのフォローアップ質問に回答
 
-5. Wait while the agent conducts the research and generates your report
+5. エージェントが調査を実施してレポートを生成するまで待機
 
-## Project Structure
+## プロジェクト構造
 
 ```
 deepresearch/
-├── app.py                 # Streamlit web interface
-├── research_agent.py      # Core agent logic and workflow
-├── requirements.txt       # Python dependencies
-├── .env                  # Environment variables (create this)
-└── README.md            # This file
+├── app.py                 # Streamlit Webインターフェース
+├── research_agent.py      # コアエージェントロジックとワークフロー
+├── requirements.txt       # Python依存関係
+├── .env                  # 環境変数（作成が必要）
+└── README.md            # このファイル
 ```
 
-## Key Components
+## 主要コンポーネント
 
 ### research_agent.py
-- **Pydantic Models**: Structured data models for research plans, queries, and results
-- **LangChain Chains**: LCEL chains for different research tasks
-- **LangGraph Workflow**: State machine managing the research process
-- **Search Integration**: Tavily API for web searches
-- **Citation Management**: Tracks sources and creates proper citations
+- **Pydanticモデル**: 調査計画、クエリ、結果のための構造化データモデル
+- **LangChainチェーン**: さまざまな調査タスクのためのLCELチェーン
+- **LangGraphワークフロー**: 調査プロセスを管理する状態マシン
+- **検索統合**: Web検索のためのTavily API
+- **引用管理**: ソースを追跡し、適切な引用を作成
 
 ### app.py
-- **Session Management**: Maintains conversation state across interactions
-- **Interactive UI**: User-friendly interface for research queries
-- **Progress Tracking**: Real-time updates during research
-- **Message History**: Displays the full conversation flow
+- **セッション管理**: インタラクション全体で会話状態を維持
+- **インタラクティブUI**: 調査クエリのためのユーザーフレンドリーなインターフェース
+- **進捗追跡**: 調査中のリアルタイム更新
+- **メッセージ履歴**: 完全な会話フローを表示
 
-## How It Works
+## 動作の仕組み
 
-1. **Initial Query**: User provides a research topic
-2. **Plan Creation**: Agent analyzes the query and creates a research plan
-3. **Clarification**: Agent asks follow-up questions to better understand the scope
-4. **Iterative Search**: Agent performs multiple layers of searches:
-   - Initial broad searches based on the topic
-   - Follow-up searches based on initial findings
-   - Continues until reaching the planned depth
-5. **Report Generation**: Synthesizes all findings into a comprehensive report with citations
+1. **初期クエリ**: ユーザーが調査トピックを提供
+2. **計画作成**: エージェントがクエリを分析し、調査計画を作成
+3. **明確化**: エージェントが範囲をよりよく理解するためのフォローアップ質問
+4. **反復検索**: エージェントが複数層の検索を実行:
+   - トピックに基づく初期の幅広い検索
+   - 初期結果に基づくフォローアップ検索
+   - 計画された深さに達するまで継続
+5. **レポート生成**: すべての結果を引用付きの包括的なレポートに統合
 
-## Configuration
+## 設定
 
-### Research Parameters
-- **Breadth**: Number of parallel search queries (1-5)
-- **Depth**: Number of follow-up search layers (1-3)
+### 調査パラメータ
+- **幅（Breadth）**: 並列検索クエリの数（1-5）
+- **深さ（Depth）**: フォローアップ検索層の数（1-3）
 
-### Model Settings
-- **Primary Model**: Google Gemini 2.0 Flash (temperature=0)
-- **Creative Model**: Google Gemini 2.0 Flash (temperature=0.7) for report generation
+### モデル設定
+- **プライマリモデル**: Google Gemini 2.0 Flash（temperature=0）
+- **クリエイティブモデル**: Google Gemini 2.0 Flash（temperature=0.7）レポート生成用
 
-## API Keys
+## APIキー
 
 ### Google Gemini API
-Get your API key from [Google AI Studio](https://makersuite.google.com/app/apikey)
+[Google AI Studio](https://makersuite.google.com/app/apikey)からAPIキーを取得
 
 ### Tavily Search API
-Get your API key from [Tavily](https://tavily.com/)
+[Tavily](https://tavily.com/)からAPIキーを取得
 
-## Troubleshooting
+## トラブルシューティング
 
-### Common Issues
+### よくある問題
 
-1. **API Key Errors**: Ensure your `.env` file contains valid API keys
-2. **Import Errors**: Make sure all dependencies are installed via `pip install -r requirements.txt`
-3. **Graph Visualization**: If the graph PNG fails to generate, ensure graphviz is installed on your system
+1. **APIキーエラー**: `.env`ファイルに有効なAPIキーが含まれていることを確認
+2. **インポートエラー**: `pip install -r requirements.txt`ですべての依存関係がインストールされていることを確認
+3. **グラフの可視化**: グラフPNGの生成に失敗する場合、システムにgraphvizがインストールされていることを確認
 
-## Contributing
+## 貢献
 
-Contributions are welcome! Please feel free to submit pull requests or open issues for bugs and feature requests.
+貢献を歓迎します！プルリクエストを送信したり、バグや機能リクエストのためのイシューを開いてください。
 
-## License
+## ライセンス
 
-This project is open source and available under the MIT License.
+このプロジェクトはオープンソースで、MITライセンスの下で利用可能です。
 
-## Acknowledgments
+## 謝辞
 
-- Built with [LangChain](https://github.com/langchain-ai/langchain) and [LangGraph](https://github.com/langchain-ai/langgraph)
-- Uses [Google Gemini](https://deepmind.google/technologies/gemini/) for language processing
-- Powered by [Tavily](https://tavily.com/) for web search capabilities
-- Interface created with [Streamlit](https://streamlit.io/)
+- [LangChain](https://github.com/langchain-ai/langchain)と[LangGraph](https://github.com/langchain-ai/langgraph)で構築
+- 言語処理に[Google Gemini](https://deepmind.google/technologies/gemini/)を使用
+- Web検索機能は[Tavily](https://tavily.com/)によって提供
+- [Streamlit](https://streamlit.io/)でインターフェースを作成
 
-## Author
+## 作者
 
-Created by uchi736
+uchi736によって作成
 
 ---
 
-For more information or support, please open an issue on [GitHub](https://github.com/uchi736/research_agent/issues).
+詳細情報やサポートについては、[GitHub](https://github.com/uchi736/research_agent/issues)でイシューを開いてください。
